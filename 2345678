@@ -66,7 +66,7 @@ class Ball(pygame.sprite.Sprite):
     else:
       return False
 
-class pelaaja(pygame.sprite.Sprite):
+class Pelaaja(pygame.sprite.Sprite):
   def __init__(self):
     super().__init__()
     self.leveys = 75
@@ -96,7 +96,7 @@ tiilet = pygame.sprite.Group()
 pallot = pygame.sprite.Group()
 kaikki = pygame.sprite.Group()
 
-pelaaja = pelaaja()
+pelaaja = Pelaaja()
 kaikki.add(pelaaja)
 
 pallo = Ball()
@@ -129,7 +129,7 @@ while not game_over:
   if pygame.sprite.spritecollide(pelaaja, pallot, False):
     muutos = (pelaaja.rect.x + pelaaja.leveys/2) - (pallo.rect.x + pallo.leveys/2)
     pallo.rect.y = pelialue.get_height() - pelaaja.rect.height - pallo.rect.height - 1
-    pallo.pommpu(muutos)
+    pallo.pomppu(muutos)
   
   poistetut_tiilet = pygame.sprite.spritecollide(pallo, tiilet, True)
   if len(poistetut_tiilet) > 0:
@@ -141,4 +141,5 @@ while not game_over:
   kaikki.draw(pelialue)
 
   pygame.display.flip()
-  pygame.quit()
+  
+pygame.quit()
